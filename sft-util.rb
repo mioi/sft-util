@@ -24,11 +24,11 @@ command = ARGV[0]
 case command
 when "enroll"
   cmd = "sft enroll --team #{team} 2>&1"
-  regex = /https:\/\/.*scaleft.*client_logins[^" ]*/
+  regex = /https:\/\/.*scaleft.*approve/
   msg = "Scaleft Client Enrollment Requested"
 when "login"
   cmd = "sft login --team #{team} 2>&1"
-  regex = /https:\/\/.*scaleft.*approve/
+  regex = /https:\/\/.*scaleft.*client_logins[^" ]*/
   msg = "Scaleft Client Login Requested"
 else
   abort "invalid command"
