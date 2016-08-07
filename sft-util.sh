@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Set these environment variables:
-# SFT_TEAM       Your Scaleft team name
-# SLACK_WEBHOOK  The Slack incoming webhook
+# SFT_TEAM           Your Scaleft team name
+# SFT_SLACK_WEBHOOK  The Slack incoming webhook
 #
 # Example usage:
 # ./sft-util.sh <command>
@@ -26,6 +26,6 @@ esac
 sft $1 --team $SFT_TEAM 2>&1 | while read line; do
   if echo $line | egrep -q "^ *https:\/\/.*$"; then
     url=`echo $line | xargs`
-    curl -s $SLACK_WEBHOOK -d '{"text":"['$HOSTNAME'] '"$MSG"': '$url'"}' > /dev/null 2>&1
+    curl -s $SFT_SLACK_WEBHOOK -d '{"text":"['$HOSTNAME'] '"$MSG"': '$url'"}' > /dev/null 2>&1
   fi
 done
