@@ -20,16 +20,17 @@ OptionParser.new do |opts|
 end.parse!
 
 command = ARGV[0]
+hostname = `hostname`.strip
 
 case command
 when "enroll"
   cmd = "sft enroll --team #{team} 2>&1"
   regex = /https:\/\/.*scaleft.*approve/
-  msg = "Scaleft Client Enrollment Requested"
+  msg = "[#{hostname}] Scaleft Client Enrollment Requested"
 when "login"
   cmd = "sft login --team #{team} 2>&1"
   regex = /https:\/\/.*scaleft.*client_logins[^" ]*/
-  msg = "Scaleft Client Login Requested"
+  msg = "[#{hostname}] Scaleft Client Login Requested"
 else
   abort "invalid command"
 end
